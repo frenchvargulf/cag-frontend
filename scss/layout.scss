@@ -1,0 +1,57 @@
+/* Layout */
+.cag-demo-container {
+  margin: auto;
+
+  width: 100%;
+  min-width: 400px;
+  max-width: 1120px;
+  min-height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+}
+
+.cag-demo-container__box {
+  width: 100%;
+
+  min-height: 80vh;
+  height: calc(100vh-10px);
+
+  border: 1px solid $element-effects;
+  box-shadow: 1px solid $element-effects;
+  background: $secondary-background;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: stretch;
+}
+
+/* Column and Row Grid */
+.row {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.col-1-1 {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+/* Positioning */
+.relative {
+  position: relative;
+}
+
+.absolute {
+  position: absolute;
+  top: 0;
+  left: 0;
+}

@@ -1,0 +1,18 @@
+/* Box Elements */
+.box_element {
+  width: 40px;
+  height: 40px;
+  border: 1px solid $outline;
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+}
+
+.box_element--filled {
+  transition: all 1s;
+  cursor: pointer;
+}
+
+.box_element--filled:hover, .box_element--filled:focus {
+  font-size: 1.2em;
+}
