@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "es5",                          
+    "module": "commonjs",                    
+    "lib": ["es6", "dom"],                     
+    "allowJs": true,
+    "outDir": "js",                          
+    "rootDir": "ts",
+    "strict": true,         
+    "noImplicitAny": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "downlevelIteration": true
+  }
+}
