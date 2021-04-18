@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customizable Accessible Grid Generator Pure JS</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="app.css">
+</head>
+<body>
+
+  <div class="cag-demo-container col-1-1">
+    <div class="cag-demo-container__box relative shadow">
+      <div class="cag-controls-panel absolute">
+          <div class="cag-controls-panel__demo-controls">
+            <h1 class="cag-controls-panel__demo-controls--title">Customizable Accessible Grid</h1>
+          </div>
+          <div class="cag-controls-panel__demo-controls pointer">
+            <span class="cag-controls-panel__demo-controls--subtitle">Size: <span id="currentSizeValue"></span></span>
+            <input type="range" min="4" max="10" value="10" class="slider pointer" id="sizeRange">
+          </div>        
+          <div class="cag-controls-panel__demo-controls pointer">
+            <span class="cag-controls-panel__demo-controls--subtitle">Grid Colors: </span>
+        
+            <div class="col-1-1">
+              <div class="row">
+                <input type="color" id="colorPickerForBoxes" name="box" value="#EDDEDE" class="pointer">
+                <label for="colorPickerForBoxes">Box Color</label>
+              </div>
+            
+              <div class="row">
+                <input type="color" id="colorPickerForFilledBoxes" name="colorPickerForFilledBoxes" value="#E1E1DF" class="pointer">
+                <label for="colorPickerForFilledBoxes">Filled Box Color</label>
+              </div>
+            
+              <div class="row">
+                <input type="color" id="colorPickerForHoveredAndNeigbouringBoxes" name="colorPickerForHoveredAndNeigbouringBoxes" value="#ffffff" class="pointer">
+                <label for="colorPickerForHoveredAndNeigbouringBoxes">Hover Box color</label>
+              </div>
+            </div>
+          </div>
+      </div>
+      <div class="col-1-1">
+        <div class="cag-grid shadow"></div>
+      </div>
+    </div>
+
+    <a class="btn-large-blue-outline" href="https://github.com/frenchvargulf/cag-frontend">View Code</a>
+  </div>
+
+  <script src="./js/helpers.js"></script>
+  <script src="./js/range-picker.js"></script>
+  <script src="./js/color-pickers.js"></script>
+  <script src="./js/GridGenerator.js"></script>
+  <script src="./js/find-vertical-horizontal-elements.js"></script>
+  <script src="./js/count-boxes-value.js"></script>
+  <script src="./js/app.js"></script>
+  <script src="./js/grid-events.js"></script>
+</body>
+</html>
