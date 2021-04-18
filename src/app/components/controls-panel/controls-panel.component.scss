@@ -1,0 +1,21 @@
+/* Control Panel */
+.cag-controls-panel {
+  padding: 2em;
+}
+
+.cag-controls-panel__demo-controls--title {
+  text-align: center;
+  padding: 1em;
+  font-weight: 700;
+  color: #000000;
+}
+
+.cag-controls-panel__demo-controls--subtitle {
+  padding: 0.2em 0;
+}
+
+/* Color Pickers */
+input[type=color] {
+  border: none;
+  background: none;
+}

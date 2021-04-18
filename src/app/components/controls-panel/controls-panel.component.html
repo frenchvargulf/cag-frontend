@@ -1,0 +1,24 @@
+<div class="cag-controls-panel">
+  <app-controls-panel-item-wrapper [isClickable]='false'>
+    <div item-wrapper-body>
+      <h1 class="cag-controls-panel__demo-controls--title">
+        Customizable Accessible Grid
+      </h1>
+    </div>
+  </app-controls-panel-item-wrapper>
+  <app-controls-panel-item-wrapper [isClickable]='true'>
+    <app-range-slider item-wrapper-body (emitRangeSliderValue)="emitRegenerateGrid($event)"></app-range-slider>
+  </app-controls-panel-item-wrapper>
+  <app-controls-panel-item-wrapper [isClickable]='true'>
+    <div item-wrapper-body>
+      <span class="cag-controls-panel__demo-controls--subtitle">Grid Colors: </span>
+    
+      <div class="col-1-1">
+        <div class="row" *ngFor="let colorPicker of colorPickers">
+          <input type="color" id={{colorPicker.target}} name={{colorPicker.target}} value={{colorPicker.defaultColor}} (input)="emitChangedColor(colorPicker, $event)" class="pointer">
+          <label for={{colorPicker.target}}>{{colorPicker.label}}</label>
+        </div>
+      </div>
+    </div>
+  </app-controls-panel-item-wrapper>
+</div>
