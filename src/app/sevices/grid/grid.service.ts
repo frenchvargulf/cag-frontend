@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { BehaviorSubject } from 'rxjs-compat';
+import { BehaviorSubject } from 'rxjs';
 import { GridGenerator } from '../../GridGenerator';
 
 @Injectable({
