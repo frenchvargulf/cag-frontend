@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatSidenav } from '@angular/material/sidenav';
+import { Grid } from './models/grid';
 import { GridService } from './sevices/grid/grid.service';
 
 @Component({
@@ -9,7 +10,7 @@ import { GridService } from './sevices/grid/grid.service';
 })
 export class AppComponent {
   opened = true;
-  currentGridState: number[][] | undefined = this.gridService.currentGridValue;
+  currentGridState: Grid[][] | undefined = this.gridService.currentGridValue;
   previouslyClickedElement;
   colorPickers = [
     {label: 'Box Color', target: 'colorPickerForBoxes', defaultColor: '#EDDEDE' },
@@ -46,7 +47,7 @@ export class AppComponent {
     this.colorPickers = newColorPickers;
   }
 
-  applyBackgroundColor(boxElement): any {
+  applyBackgroundColor(boxElement): string {
     return boxElement.value === 1 ?
       (boxElement.isCurrentlyNeighbourToHoveredElement ? this.colorPickers[2].defaultColor : this.colorPickers[1].defaultColor) :
       this.colorPickers[0].defaultColor;

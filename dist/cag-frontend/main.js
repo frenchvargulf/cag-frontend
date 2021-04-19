@@ -37,10 +37,14 @@ class ChoosenFilledBoxDirective {
         this.gridSerivce.findVerticallyAndHorizontallyAlignedBoxesToElementAndCount(this.element);
     }
     mouseover() {
-        this.gridSerivce.findVerticallyAndHorizontallyAlignedBoxesToElement(this.element);
+        if (this.element[0].value) {
+            this.gridSerivce.findVerticallyAndHorizontallyAlignedBoxesToElement(this.element);
+        }
     }
     mouseleave() {
-        this.gridSerivce.findVerticallyAndHorizontallyAlignedBoxesToElement(this.element);
+        if (this.element[0].value) {
+            this.gridSerivce.findVerticallyAndHorizontallyAlignedBoxesToElement(this.element);
+        }
     }
 }
 ChoosenFilledBoxDirective.ɵfac = function ChoosenFilledBoxDirective_Factory(t) { return new (t || ChoosenFilledBoxDirective)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_sevices_grid_grid_service__WEBPACK_IMPORTED_MODULE_1__["GridService"])); };
@@ -601,6 +605,7 @@ class GridService {
         }
     }
     findVerticallyAndHorizontallyAlignedBoxesToElementAndCount(value) {
+        // TODO Optimize number of times called with findVerticallyAndHorizontallyAlignedBoxesToElement
         const possiblePositions = [
             [value[1] - 1, value[2]],
             [value[1] + 1, value[2]],

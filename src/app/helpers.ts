@@ -1,5 +1,7 @@
+import { Grid } from "./models/grid";
+
 export const createTwoDimenensionalArray = (size: number) => {
-  const result: any[][] = [];
+  const result: Grid[][] = [];
   for (let i = 0 ; i < size; i++) {
     result[i] = [];
     for (let j = 0; j < size; j++) {

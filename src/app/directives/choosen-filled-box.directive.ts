@@ -18,11 +18,15 @@ export class ChoosenFilledBoxDirective {
   }
 
   @HostListener('mouseover') mouseover(): void {
-    this.gridSerivce.findVerticallyAndHorizontallyAlignedBoxesToElement(this.element);
+    if (this.element[0].value) {
+      this.gridSerivce.findVerticallyAndHorizontallyAlignedBoxesToElement(this.element);
+    }
   }
 
   @HostListener('mouseleave') mouseleave(): void {
-    this.gridSerivce.findVerticallyAndHorizontallyAlignedBoxesToElement(this.element);
+    if (this.element[0].value) {
+      this.gridSerivce.findVerticallyAndHorizontallyAlignedBoxesToElement(this.element);
+    }
   }
 
 }

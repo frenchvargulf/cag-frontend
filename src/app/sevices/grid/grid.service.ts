@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { BehaviorSubject } from 'rxjs';
+import { Grid } from 'src/app/models/grid';
 import { GridGenerator } from '../../GridGenerator';
 
 @Injectable({
@@ -17,15 +18,15 @@ export class GridService {
   verticallyAndHorizontallyAlignedBoxesToElementCount = 0;
 
   constructor() {
-    this.currentGridSubject = new BehaviorSubject<any>(this.gridGenerator.generate(10));
+    this.currentGridSubject = new BehaviorSubject<Grid[][]>(this.gridGenerator.generate(10));
     this.currentGrid = this.currentGridSubject.asObservable();
   }
 
-  public get currentGridValue(): any {
+  public get currentGridValue(): Grid[][] {
     return this.currentGridSubject.value;
   }
 
-  generateGrid(n: number): any[][] {
+  generateGrid(n: number): Grid[][] {
     this.currentGridSubject.next(this.gridGenerator.generate(n));
     return this.gridGenerator.generate(n);
   }
@@ -55,7 +56,9 @@ export class GridService {
     }
   }
 
+
   findVerticallyAndHorizontallyAlignedBoxesToElementAndCount(value): any {
+    // TODO Optimize number of times called with findVerticallyAndHorizontallyAlignedBoxesToElement
     const possiblePositions = [
       [value[1] - 1, value[2]],
       [value[1] + 1, value[2]],
