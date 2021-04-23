@@ -10,7 +10,7 @@ const assignColorToBoxes = (boxesToColor, color) => {
 
 const colorCurrentElementAndVericallyAndHorizontallyAlignedBoxes = (element, color, elementsToColorOnHover) => {
   element.style.backgroundColor = color; 
-  const horizontallyAndVericallyAlignedBoxes = findHorizontallyAndVerticallyAlignedBoxes(element);
+  const horizontallyAndVericallyAlignedBoxes = findHorizontallyAndVerticallyAlignedBoxesWithTheirNeigbours(element);
   elementsToColorOnHover.forEach(elementToColorOnHover => {
     horizontallyAndVericallyAlignedBoxes.map( alignedBoxToElement => {
       if (alignedBoxToElement[0] === parseStringToNumber(elementToColorOnHover.dataset.position[0])
