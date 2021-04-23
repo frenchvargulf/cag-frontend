@@ -1,7 +1,16 @@
 const findHorizontallyAndVerticallyAlignedBoxes = box => {
-  const neighbours = [];
-  let positionX = parseStringToNumber(box.dataset.position[0]);
-  let positionY = parseStringToNumber(box.dataset.position[2]);
+  let neighbours = [];
+
+  let positionX;
+  let positionY;
+  if (box.dataset && box.dataset.position && box.dataset.position[0] && box.dataset.position[2]) {
+    positionX = parseStringToNumber(box.dataset.position[0]);
+    positionY = parseStringToNumber(box.dataset.position[2]);
+  } else {
+    positionX = box[0];
+    positionY = box[1];
+  }
+
 
   const possiblePositions = [
     [positionX - 1, positionY],
@@ -15,5 +24,24 @@ const findHorizontallyAndVerticallyAlignedBoxes = box => {
       neighbours.push([possiblePositions[i][0], possiblePositions[i][1]])
     }
   }
+  return neighbours;
+}
+
+const findHorizontallyAndVerticallyAlignedBoxesWithTheirNeigbours = box => {
+  let neighbours = findHorizontallyAndVerticallyAlignedBoxes(box);
+  if (neighbours) {
+    neighbours.forEach(el => {
+      const secondDegreeNeighbours = findHorizontallyAndVerticallyAlignedBoxes(el);      
+      if (secondDegreeNeighbours.length !== 0) {
+        neighbours = [ ...neighbours, ...secondDegreeNeighbours ]
+      }
+    });
+    neighbours = neighbours
+      .map(ar=>JSON.stringify(ar))
+      .filter((itm, idx, arr) => arr.indexOf(itm) === idx)
+      .map(str=>JSON.parse(str))
+      .filter(el => !(el[0] === parseStringToNumber(box.dataset.position[0]) && el[1] === parseStringToNumber(box.dataset.position[2])));
+  }
+
   return neighbours;
 }
