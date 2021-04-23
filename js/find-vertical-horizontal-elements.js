@@ -37,10 +37,11 @@ const findHorizontallyAndVerticallyAlignedBoxesWithTheirNeigbours = box => {
       }
     });
     neighbours = neighbours
-      .map(ar=>JSON.stringify(ar))
+      .map(arr=>JSON.stringify(arr))
       .filter((itm, idx, arr) => arr.indexOf(itm) === idx)
       .map(str=>JSON.parse(str))
-      .filter(el => !(el[0] === parseStringToNumber(box.dataset.position[0]) && el[1] === parseStringToNumber(box.dataset.position[2])));
+      // Exlude or Include Current Clicked
+      // .filter(el => !(el[0] === parseStringToNumber(box.dataset.position[0]) && el[1] === parseStringToNumber(box.dataset.position[2])));
   }
 
   return neighbours;
