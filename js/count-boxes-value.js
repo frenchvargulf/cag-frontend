@@ -1,28 +1,20 @@
 "use strict";
-var countVerticallyAndHorizontallyAlignedBoxesValue = function (e, box) {
-    var count = 0;
-    findHorizontallyAndVerticallyAlignedBoxes(box).map(function (neighbour) { return count += currentGridState ? currentGridState[neighbour[0]][neighbour[1]] : 0; });
-    e.target.innerText = "" + count;
-};
-var listenForCountVerticallyAndHorizontallyAlignedBoxesValueEvents = function () {
-    var boxes = document.querySelectorAll('.box_element--filled');
-    var previouslyClickedBox;
-    Array.from(boxes).map(function (box) {
-        box.addEventListener('click', function (e) {
-            if (previouslyClickedBox) {
-                previouslyClickedBox.innerText = '1';
-            }
-            previouslyClickedBox = box;
-            countVerticallyAndHorizontallyAlignedBoxesValue(e, box);
-        });
-        box.addEventListener('keyup', function (e) {
-            if (e.key === 'Space' || e.key === ' ') {
-                if (previouslyClickedBox) {
-                    previouslyClickedBox.innerText = '1';
-                }
-                previouslyClickedBox = box;
-                countVerticallyAndHorizontallyAlignedBoxesValue(e, box);
-            }
-        });
+const countVerticallyAndHorizontallyAlignedBoxesValue = (e, box) => {
+  let count = 0;
+  findHorizontallyAndVerticallyAlignedBoxesWithTheirNeigbours(box).map(neighbour => count += currentGridState[neighbour[0]][neighbour[1]]);
+  e.target.innerText = count;
+}
+
+const listenForCountVerticallyAndHorizontallyAlignedBoxesValueEvents = () => {
+  const boxes = document.querySelectorAll('.box_element--filled');
+  let previouslyClickedBox;
+  [...boxes].map(box => {
+    box.addEventListener('click', e => {
+      if (previouslyClickedBox) {
+        previouslyClickedBox.innerText = 1;
+      }
+      previouslyClickedBox = box;
+      countVerticallyAndHorizontallyAlignedBoxesValue(e, box);
     });
+  })
 };
