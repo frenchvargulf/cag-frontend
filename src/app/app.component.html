@@ -1,0 +1,37 @@
+<mat-sidenav-container class="cag-demo-container" (backdropClick)="close('backdrop')">
+  <mat-sidenav #sidenav (keydown.escape)="close('escape')" disableClose>
+    <button mat-button (click)="close('toggle button')">
+      <mat-icon>close</mat-icon>
+    </button>
+    <div class="cag-demo-container__box">
+      <app-controls-panel
+        class='cag-controls-panel'
+        [colorPickers]="colorPickers"
+        (emitColorPickerValue)="changeColor($event)"
+        (emitRangeSliderValue)="regenerateGrid($event)">
+      </app-controls-panel>
+    </div>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <div class="col-1-1">
+      <p><button mat-button (click)="sidenav.open()">Customize Grid</button></p>
+      <div class="cag-grid shadow">
+        <div class="row" *ngFor="let row of currentGridState; let i = index">
+          <div 
+            *ngFor="let boxElement of row; let boxIndex = index" 
+            [appChoosenFilledBox]="[boxElement, i, boxIndex]" 
+            [tabindex]="boxElement.value === 1 ? 0 : -1"
+            class="box_element"
+            [ngClass]="{pointer: boxElement.value }"
+            (keyup)="boxElement.value ? getSpaceInputEvent($event) : ''"
+            (click)="boxElement.value ? getAndDisplayCountedVerticallyAndHortizontallyAlignedBoxesToElement($event) : ''"
+            [style.backgroundColor]="applyBackgroundColor(boxElement)"
+            >
+            {{boxElement.value}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

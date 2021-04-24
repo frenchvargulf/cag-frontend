@@ -1,0 +1,27 @@
+/* Box Element */
+.box_element {
+  width: 30px;
+  height: 30px;
+
+  border: 1px solid #000000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.box_element--filled {
+  transition: all 1s;
+  cursor: pointer;
+}
+
+.box_element--filled:hover, .box_element--filled:focus {
+  font-size: 1.2em;
+}
+
+.cag-demo-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}

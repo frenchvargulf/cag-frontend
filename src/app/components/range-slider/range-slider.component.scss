@@ -1,0 +1,35 @@
+
+/* Range Slider */
+.slider {
+  -webkit-appearance: none;
+  appearance: none;
+  max-height: 25px;
+  background: #d3d3d3;
+  outline: none;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
+  border-radius: 25px;
+  padding: 0.1em;
+  width: 100%;
+  display: flex;
+}
+
+.slider:focus {
+  box-shadow: 0 0 0 1pt rgba(0, 0, 0, 0.85);
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #2095f3;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #2095f3;
+}
