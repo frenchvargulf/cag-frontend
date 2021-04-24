@@ -31,53 +31,92 @@ export class GridService {
     return this.gridGenerator.generate(n);
   }
 
-  findVerticallyAndHorizontallyAlignedBoxesToElement(value): void {
-    this.currentElementState = value;
+  findHorizontallyAndVerticallyAlignedBoxesHover = box => {
+    let neighbours = [];
+
+    let positionX = box[1];
+    let positionY = box[2];
 
     const possiblePositions = [
-      [value[1] - 1, value[2]],
-      [value[1] + 1, value[2]],
-      [value[1], value[2] - 1],
-      [value[1], value[2] + 1]
-    ];
+      [positionX - 1, positionY],
+      [positionX + 1, positionY],
+      [positionX, positionY - 1],
+      [positionX, positionY + 1]
+    ]
 
     const currentGridState = this.currentGridValue;
 
-    if (currentGridState[value[1]][value[2]]) {
-      currentGridState[value[1]][value[2]].isCurrentlyNeighbourToHoveredElement =
-      !currentGridState[value[1]][value[2]].isCurrentlyNeighbourToHoveredElement;
-    }
-
-    for (const possiblePosition of possiblePositions) {
-      if (currentGridState[possiblePosition[0]] && currentGridState[possiblePosition[0]][possiblePosition[1]]) {
-        currentGridState[possiblePosition[0]][possiblePosition[1]].isCurrentlyNeighbourToHoveredElement =
-        !currentGridState[possiblePosition[0]][possiblePosition[1]].isCurrentlyNeighbourToHoveredElement;
+    for (let i = 0; i <= possiblePositions.length-1; i++) {
+      if (currentGridState[possiblePositions[i][0]] && currentGridState[possiblePositions[i][1]]) {
+        if (currentGridState[possiblePositions[i][0]][possiblePositions[i][1]].value === 1) {
+          currentGridState[possiblePositions[i][0]][possiblePositions[i][1]].isCurrentlyNeighbourToHoveredElement =
+          !currentGridState[possiblePositions[i][0]][possiblePositions[i][1]].isCurrentlyNeighbourToHoveredElement
+          neighbours.push([currentGridState[possiblePositions[i][0]][possiblePositions[i][1]], possiblePositions[i][0], possiblePositions[i][1]])
+        } 
       }
     }
+    return neighbours;
   }
 
+  findHorizontallyAndVerticallyAlignedBoxes = box => {
+    let neighbours = [];
 
-  findVerticallyAndHorizontallyAlignedBoxesToElementAndCount(value): any {
-    // TODO Optimize number of times called with findVerticallyAndHorizontallyAlignedBoxesToElement
+    let positionX = box[1];
+    let positionY = box[2];
+
     const possiblePositions = [
-      [value[1] - 1, value[2]],
-      [value[1] + 1, value[2]],
-      [value[1], value[2] - 1],
-      [value[1], value[2] + 1]
-    ];
+      [positionX - 1, positionY],
+      [positionX + 1, positionY],
+      [positionX, positionY - 1],
+      [positionX, positionY + 1]
+    ]
 
     const currentGridState = this.currentGridValue;
-    const neighbours = [];
-    let count = 0;
 
-    for (const possiblePosition of possiblePositions) {
-      if (currentGridState[possiblePosition[0]] && currentGridState[possiblePosition[0]][possiblePosition[1]]) {
-        neighbours.push(currentGridState[possiblePosition[0]][possiblePosition[1]]);
-        count += currentGridState[possiblePosition[0]][possiblePosition[1]].value;
+    for (let i = 0; i <= possiblePositions.length-1; i++) {
+      if (currentGridState[possiblePositions[i][0]] && currentGridState[possiblePositions[i][1]]) {
+        neighbours.push([currentGridState[possiblePositions[i][0]][possiblePositions[i][1]], possiblePositions[i][0], possiblePositions[i][1]])
       }
     }
+    return neighbours;
+  }
+  
+  findHorizontallyAndVerticallyAlignedBoxesWithTheirNeigbours = box => {
+    let neighbours = this.findHorizontallyAndVerticallyAlignedBoxes(box);
+    let count = 0;
+
+    if (neighbours) {
+      neighbours.forEach(el => {
+        const secondDegreeNeighbours = this.findHorizontallyAndVerticallyAlignedBoxes(el);
+        if (secondDegreeNeighbours.length !== 0) {
+          neighbours = [ ...neighbours, ...secondDegreeNeighbours ]
+        }
+      });
+      neighbours = neighbours 
+        .map(arr=>JSON.stringify(arr))
+        .filter((itm, idx, arr) => arr.indexOf(itm) === idx)
+        .map(str=>JSON.parse(str))
+        .map(el => count += el[0].value)
+    }
     this.verticallyAndHorizontallyAlignedBoxesToElementCount = count;
-    return { neighbours, count };
+    return neighbours;
+  }
+
+  findHorizontallyAndVerticallyAlignedBoxesWithTheirNeigboursAndHover = box => {
+    let neighbours = this.findHorizontallyAndVerticallyAlignedBoxesHover(box);
+    if (neighbours) {
+      neighbours.forEach(el => {
+        const secondDegreeNeighbours = this.findHorizontallyAndVerticallyAlignedBoxesHover(el);
+        if (secondDegreeNeighbours.length !== 0) {
+          neighbours = [ ...neighbours, ...secondDegreeNeighbours ]
+        }
+      });
+      neighbours = neighbours 
+        .map(arr=>JSON.stringify(arr))
+        .filter((itm, idx, arr) => arr.indexOf(itm) === idx)
+        .map(str => JSON.parse(str))
+    }
+    return neighbours;
   }
 
   getVerticallyAndHorizontallyAlignedBoxesToElementCount(): number {

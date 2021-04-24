@@ -10,22 +10,22 @@ export class ChoosenFilledBoxDirective {
   constructor(private gridSerivce: GridService) { }
 
   @HostListener('click') clicked(): void {
-    this.gridSerivce.findVerticallyAndHorizontallyAlignedBoxesToElementAndCount(this.element);
+    this.gridSerivce.findHorizontallyAndVerticallyAlignedBoxesWithTheirNeigbours(this.element);
   }
 
   @HostListener('keyup.Space') Enter(): void {
-    this.gridSerivce.findVerticallyAndHorizontallyAlignedBoxesToElementAndCount(this.element);
+    this.gridSerivce.findHorizontallyAndVerticallyAlignedBoxesWithTheirNeigbours(this.element);
   }
 
   @HostListener('mouseover') mouseover(): void {
     if (this.element[0].value) {
-      this.gridSerivce.findVerticallyAndHorizontallyAlignedBoxesToElement(this.element);
+      this.gridSerivce.findHorizontallyAndVerticallyAlignedBoxesWithTheirNeigboursAndHover(this.element);
     }
   }
 
   @HostListener('mouseleave') mouseleave(): void {
     if (this.element[0].value) {
-      this.gridSerivce.findVerticallyAndHorizontallyAlignedBoxesToElement(this.element);
+      this.gridSerivce.findHorizontallyAndVerticallyAlignedBoxesWithTheirNeigboursAndHover(this.element);
     }
   }
 
