@@ -4,7 +4,7 @@ const countVerticallyAndHorizontallyAlignedBoxesValue = (
   ) => {
   let count: number = 0;
 
-  findHorizontallyAndVerticallyAlignedBoxes(box).map(neighbour => count += currentGridState ? currentGridState[neighbour[0]][neighbour[1]] : 0);
+  findHorizontallyAndVerticallyAlignedBoxesWithTheirNeigbours(box).map(neighbour => count += currentGridState ? currentGridState[neighbour[0]][neighbour[1]] : 0);
   (e.target as HTMLElement).innerText = `${count}`;
 }
 

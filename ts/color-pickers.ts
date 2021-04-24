@@ -15,7 +15,7 @@ const colorCurrentElementAndVericallyAndHorizontallyAlignedBoxes = (
   ) => {
   if (element) {
     let htmlElement = <HTMLInputElement>element;
-    const horizontallyAndVericallyAlignedBoxes = findHorizontallyAndVerticallyAlignedBoxes(htmlElement);
+    const horizontallyAndVericallyAlignedBoxes = findHorizontallyAndVerticallyAlignedBoxesWithTheirNeigbours(htmlElement);
     htmlElement.style.backgroundColor = color;
     elementsToColorOnHover.forEach((elementToColorOnHover: HTMLElement) => {
       horizontallyAndVericallyAlignedBoxes.map( alignedBoxToElement => {
