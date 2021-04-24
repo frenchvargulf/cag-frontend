@@ -36,8 +36,8 @@ class GridGenerator {
   }
 
   generateGrid = () => {
-    const grid = createTwoDimenensionalArray(sizeSlider.value,sizeSlider.value);
-    this.generateVisualDisplay(grid);
+    const grid = createTwoDimenensionalArray(5,5);
+    // this.generateVisualDisplay(grid);
     return grid;
   }
 
