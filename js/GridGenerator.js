@@ -19,7 +19,8 @@ class GridGenerator {
       for (let j = 0; j <= grid[i].length - 1; j++) {
         const element = document.createElement("div");
         element.classList.add('box_element');
-        element.textContent = grid[i][j];
+        // Hide values when no interaction
+        // element.textContent = grid[i][j];
         if (grid[i][j] === 1) {
           const className = (grid[i][j] === 1 ? 'box_element--filled' : '');
           element.dataset.isFilled = true;

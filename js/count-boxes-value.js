@@ -10,7 +10,8 @@ const listenForCountVerticallyAndHorizontallyAlignedBoxesValueEvents = () => {
   [...boxes].map(box => {
     box.addEventListener('click', e => {
       if (previouslyClickedBox) {
-        previouslyClickedBox.innerText = 1;
+         // Hide values when no interaction
+        previouslyClickedBox.innerText = '';
       }
       previouslyClickedBox = box;
       countVerticallyAndHorizontallyAlignedBoxesValue(e, box);
@@ -18,7 +19,8 @@ const listenForCountVerticallyAndHorizontallyAlignedBoxesValueEvents = () => {
     box.addEventListener('keyup', e => {
       if(e.key === 'Space' || e.key === ' '){
         if (previouslyClickedBox) {
-          previouslyClickedBox.innerText = 1;
+           // Hide values when no interaction
+          previouslyClickedBox.innerText = '';
         }
         previouslyClickedBox = box;
         countVerticallyAndHorizontallyAlignedBoxesValue(e, box);
